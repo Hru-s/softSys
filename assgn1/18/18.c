@@ -27,6 +27,7 @@ lock.l_start = 0;
 lock.l_len = 0; 
 fcntl(fd1,F_SETLKW,&lock);
 
+printf("critical");
 write(fd1, buff, sizeof(buff));
 
 lock.l_type=F_UNLCK;
@@ -35,7 +36,7 @@ fcntl(fd1,F_SETLK,&lock);
 lock.l_type = F_WRLCK;
 fcntl(fd1,F_SETLKW,&lock);
 read(fd1,&buff,sizeof(buff));
-
+getchar();
 lock.l_type=F_UNLCK;
 fcntl(fd1,F_SETLK,&lock);
 
